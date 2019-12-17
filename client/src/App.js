@@ -9,6 +9,7 @@ const App = () => {
   const [savedList, setSavedList] = useState([]);
 
   const addToSavedList = movie => {
+    console.log(movie);
     setSavedList([...savedList, movie]);
   };
 
@@ -17,16 +18,11 @@ const App = () => {
       <SavedList list={savedList} />
       <Switch>
         <Route exact path="/">
-          <MovieList />
+          <MovieList onclick={addToSavedList} />
         </Route>
-        {/* <Route path="/movies/:id">
-          <Movie />
-        </Route> */}
-        <Route
-          exact
-          path="/movies/:id"
-          render={props => <Movie {...props} />}
-        />
+        <Route path="/movies/:id">
+          <Movie onclick={addToSavedList} />
+        </Route>
       </Switch>
     </BrowserRouter>
   );
